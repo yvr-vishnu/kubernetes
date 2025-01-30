@@ -16,3 +16,10 @@ spec:
       containers:
         - name: vote
           image: depesh017/demo:vote
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "2Gi"
+              cpu: "2"

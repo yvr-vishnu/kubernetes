@@ -1,0 +1,23 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: Avanced-cluster
+  region: us-west-2
+  version: "1.31"
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t2.small
+    desiredCapacity: 1
+    volumeSize: 20
+  - name: ng-2
+    minSize: 2
+    maxSize: 2
+    instancesDistribution:
+      maxPrice: 0.0464
+      instanceTypes: ["t3.small", "t3.medium"]
+      onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 0
+      spotAllocationStrategy: "capacity-optimized"
+AvailabilityZones: ["us-west-2a", "us-west-2b"]

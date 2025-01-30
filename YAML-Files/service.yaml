@@ -1,4 +1,4 @@
-  apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vote
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: vote
-          image: depesh017/demo:vote
+          image: docker/example-voting-app-vote
 ---
 apiVersion: v1
 kind: Service
