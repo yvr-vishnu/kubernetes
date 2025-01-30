@@ -1,0 +1,29 @@
+  apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vote
+  template:
+    metadata:
+      name: vote
+      labels:
+        app: vote
+    spec:
+      containers:
+        - name: vote
+          image: depesh017/demo:vote
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vote
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: vote

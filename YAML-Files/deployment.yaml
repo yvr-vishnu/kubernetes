@@ -5,12 +5,12 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchLables:
+    matchLabels:
       batch: c42
   template:
     metadata:
       name: nginx
-      lables:
+      labels:
         batch: c42
     spec:
       containers:
