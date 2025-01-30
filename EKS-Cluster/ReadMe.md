@@ -1,43 +1,38 @@
-Setting Up a Kubernetes Cluster with Minikube and EKS
-Minikube
+# Setting Up a Kubernetes Cluster with Minikube and EKS
+
+## Minikube
 Minikube is a local Kubernetes cluster that provides the same capabilities as a Kubernetes cluster in a single-node architecture. Practice installing and writing basic YAML files to understand the syntax and usage.
 
-Installing Kubernetes (EKS) Cluster
+## Installing Kubernetes (EKS) Cluster
 For production and real-world usage, we will install a Kubernetes EKS (Elastic Kubernetes Service) cluster, which has advanced capabilities.
 
-Cost Considerations
-EKS Cluster Deployment: Charged on an hourly basis, usually costing around $75 per month (~₹5,000).
+## Cost Considerations
+- **EKS Cluster Deployment**: Charged on an hourly basis, usually costing around $75 per month (~₹5,000).
+- **EKS Cluster Creation Time**: Takes approximately 20 minutes. Avoid mistakes to minimize costs.
 
-EKS Cluster Creation Time: Takes approximately 20 minutes. Avoid mistakes to minimize costs.
+## EC2 Instance Requirements
+- **Instance Type**: T2.Medium at minimum.
+- **Storage**: At least 10 GB.
+- **Ports**: Ensure Port 22 is open.
+- **IAM Role**: Assign an IAM Role with AdminAccess to the EC2 machine to manage network components.
 
-EC2 Instance Requirements
-Instance Type: T2.Medium at minimum.
-
-Storage: At least 10 GB.
-
-Ports: Ensure Port 22 is open.
-
-IAM Role: Assign an IAM Role with AdminAccess to the EC2 machine to manage network components.
-
-Prerequisites for EKS Cluster on EC2 Machine
+## Prerequisites for EKS Cluster on EC2 Machine
 Install the following packages:
+- `Kubectl`
+- `EKSctl`
+- `AWS CLI`
 
-Kubectl
+Attach an IAM Role with AdminAccess to the EC2 machine. Run the `Install-eks.sh` script to install all prerequisites.
 
-EKSctl
+## Create Cluster Configuration
+Create a file named `cluster-conf.yaml` on the EC2 machine.
 
-AWS CLI
-
-Attach an IAM Role with AdminAccess to the EC2 machine. Run the Install-eks.sh script to install all prerequisites.
-
-Create Cluster Configuration
-Create a file named cluster-conf.yaml on the EC2 machine.
-
-Creating the EKS Cluster
+## Creating the EKS Cluster
 Use the following command to create the cluster with the default configuration:
 
-sh
+```sh
 eksctl create cluster
+
 To use your custom cluster-conf.yaml configuration file, run:
 
 sh
