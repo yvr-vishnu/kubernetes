@@ -1,46 +1,39 @@
-Setting Up a Kubernetes Cluster with Minikube and EKS
-Minikube
+# Setting Up a Kubernetes Cluster with Minikube and EKS
+
+## Minikube
 Minikube is a local Kubernetes cluster that provides the same capabilities as a Kubernetes cluster in a single-node architecture. Practice installing and writing basic YAML files to understand the syntax and usage.
 
-Installing Kubernetes (EKS) Cluster
+## Installing Kubernetes (EKS) Cluster
 For production and real-world usage, we will install a Kubernetes EKS (Elastic Kubernetes Service) cluster, which has advanced capabilities.
 
-Cost Considerations
-EKS Cluster Deployment: Charged on an hourly basis, usually costing around $75 per month (~₹5,000).
+## Cost Considerations
+- **EKS Cluster Deployment**: Charged on an hourly basis, usually costing around $75 per month (~₹5,000).
+- **EKS Cluster Creation Time**: Takes approximately 20 minutes. Avoid mistakes to minimize costs.
 
-EKS Cluster Creation Time: Takes approximately 20 minutes. Avoid mistakes to minimize costs.
+## EC2 Instance Requirements
+- **Instance Type**: T2.Medium at minimum.
+- **Storage**: At least 10 GB.
+- **Ports**: Ensure Port 22 is open.
+- **IAM Role**: Assign an IAM Role with AdminAccess to the EC2 machine to manage network components.
 
-EC2 Instance Requirements
-Instance Type: T2.Medium at minimum.
-
-Storage: At least 10 GB.
-
-Ports: Ensure Port 22 is open.
-
-IAM Role: Assign an IAM Role with AdminAccess to the EC2 machine to manage network components.
-
-Prerequisites for EKS Cluster on EC2 Machine
+## Prerequisites for EKS Cluster on EC2 Machine
 Install the following packages:
+- `Kubectl`
+- `EKSctl`
+- `AWS CLI`
 
-Kubectl
+Attach an IAM Role with AdminAccess to the EC2 machine. Run the `Install-eks.sh` script to install all prerequisites.
 
-EKSctl
+## Create Cluster Configuration
+Create a file named `cluster-conf.yaml` on the EC2 machine.
 
-AWS CLI
-
-Attach an IAM Role with AdminAccess to the EC2 machine.
-
-Run the Install-eks.sh script to install all prerequisites.
-
-Create Cluster Configuration
-Create a file named cluster-conf.yaml on the EC2 machine.
-
-Creating the EKS Cluster
+## Creating the EKS Cluster
 Use the following command to create the cluster with the default configuration:
 
-sh
+```sh
 eksctl create cluster
-Instead, to use your custom cluster-conf.yaml configuration file, run:
+
+To use your custom cluster-conf.yaml configuration file, run:
 
 sh
 eksctl create cluster -f cluster-conf.yaml
@@ -54,24 +47,23 @@ sh
 kubectl get nodes
 kubectl get pods
 Creating and Managing Pods and Deployments
-Create a Pod: Create a pod.yaml file and apply it:
+Create a Pod
+Create a pod.yaml file and apply it:
 
 sh
 kubectl apply -f pod.yaml
-Access a Pod:
-
+Access a Pod
 sh
 kubectl exec -it nginx -- /bin/bash
-Delete a Pod:
-
+Delete a Pod
 sh
 kubectl delete pod nginx
-Create a Deployment: Create a deployment.yaml file and apply it:
+Create a Deployment
+Create a deployment.yaml file and apply it:
 
 sh
 kubectl apply -f deployment.yaml
-Delete a Pod in the Deployment:
-
+Delete a Pod in the Deployment
 sh
 kubectl delete pod nginx-ddf5df559-gdtbz
 This will create a new pod in place of the deleted one.
@@ -83,8 +75,7 @@ Internal Traffic: One service to another.
 
 External Traffic: From outside the cluster.
 
-Types of services:
-
+Types of Services
 Cluster IP
 
 NodePort
@@ -92,9 +83,7 @@ NodePort
 LoadBalancer
 
 Creating and Using Services
-Create a service.yaml and add this to your deployment configuration.
-
-Apply the configuration:
+Create a service.yaml and add this to your deployment configuration. Apply the configuration:
 
 sh
 kubectl apply -f deployment-vote.yaml
@@ -114,9 +103,7 @@ deployment.yaml (for creating pods)
 
 service.yaml (for load balancing pods)
 
-Create a service.yaml for nginx with service type as ClusterIP.
-
-Apply the configuration:
+Create a service.yaml for nginx with service type as ClusterIP. Apply the configuration:
 
 sh
 kubectl apply -f nginx-service.yaml
@@ -146,5 +133,8 @@ To delete the EKS cluster:
 
 sh
 eksctl delete cluster -f cluster.yaml
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9c83d5f2242d949f2f24ef4ff76fd722d09dd66e
